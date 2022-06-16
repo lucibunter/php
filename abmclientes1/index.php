@@ -13,6 +13,7 @@ if (file_exists("archivo.txt")){
 
 
 //BOTON ELIMINAR TODO
+//si esta set el do=eliminartodo, recorro los clientes y voy eliminando uno x uno con sus respectivas imagenes
 if(isset($_GET["do"]) && $_GET["do"] == "eliminarTodo"){
     foreach ($aClientes as $pos => $cliente){
         if (file_exists("imagenes/" .$cliente["imagen"])){ 
@@ -22,8 +23,10 @@ if(isset($_GET["do"]) && $_GET["do"] == "eliminarTodo"){
         }
     unset($aClientes[$pos]);
     }
+    //actualizo el archivo.txt
     $strJson=json_encode($aClientes);          
-    file_put_contents("archivo.txt", $strJson);
+    file_put_contents("archivo.txt", $strJson); 
+    
     $msg="<strong>Se han eliminado correctamente todos los clientes</strong>. Presiona el boton 'NUEVO' para cargar un nuevo cliente";
     $alert= "danger";
     $disabled="disabled";
@@ -37,7 +40,6 @@ if(isset($_GET["id"])){
     $id="";
 }
 
-// si esta seteado el do ydo es eliminar todos se crea la variable aEliminar = array() y cada vez q se aprete el boton se agrega el id a ese array. despues ese array envia el 
 //boton ELIMINAR
 //si el do es igual a eliminar, eliminar, primero la imagen ligada al id
 if(isset($_GET["do"]) && $_GET["do"] == "eliminar"){     
@@ -95,8 +97,8 @@ if (isset($_POST["btnGuardar"])){
                 unlink("imagenes/" .$aClientes[$id]["imagen"]);
             }             
         }
-        
-        $aClientes[$id] = array (             //edita el array del $id correspondiente
+        //edita el array del $id correspondiente
+        $aClientes[$id] = array (             
             "dni" => $dni,
             "nombre" => $nombre,
             "telefono" => $telefono,
@@ -106,8 +108,8 @@ if (isset($_POST["btnGuardar"])){
         $msg="Se ha actualizado correctamente";
         $alert= "success";
     }else{
-        
-        $aClientes[] = array (              //asocio datos al array a traves de las variables en las q se almacenaron los datos del post (formulario)
+        //asocio datos al array a traves de las variables en las q se almacenaron los datos del post (formulario)
+        $aClientes[] = array (              
             "dni" => $dni,
             "nombre" => $nombre,
             "telefono" => $telefono,
@@ -118,15 +120,12 @@ if (isset($_POST["btnGuardar"])){
         $alert= "success";
     }
 
-
-    $strJson=json_encode($aClientes);             //convierte el array a json
-    file_put_contents("archivo.txt", $strJson);   //guarda el json en archivo.txt
+//convertir el array a json
+    $strJson=json_encode($aClientes);             
+//guarda el json en archivo.txt
+    file_put_contents("archivo.txt", $strJson);   
 
 }
-//antes de la imagen (o en el td de la imagen en html) poner un type: <?php echo isset($checkbox)? $checkbox : "" ;
-//y hacer q esa variable se cree solo cuando se apreto el boton seleccionar.
-//hacer que los elementos seleccionados se eliminen. 
-
 
 ?>
 
