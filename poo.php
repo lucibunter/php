@@ -5,7 +5,7 @@ class Persona { //CLASE PADRE O CLASE BASE
     protected $nombre;
     protected $edad;
     protected $nacionalidad;
-
+//getters y setters / accesores y 
     public function setNombre($nombre){$this->nombre = $nombre;}
     public function getNombre(){return $this->nombre;}
 
@@ -58,10 +58,12 @@ class Alumno extends Persona { //CLASE HIJA O DERIVADA
     }
 }
 class Docente extends Persona {
+    private $especialidad;
+
     const ESPECIALIDAD_ECO="Economía aplicada"; //CONSTANTES. DESDE DENTRO DE LA CLASE SE ACCEDE CON self::ESPECIALIDAD_ECO
     const ESPECIALIDAD_WP= "WordPress";
     const ESPECIALIDAD_BBDD = "Base de datos";
-    private $especialidad;
+    
 
     public function __get($propiedad){
         return $this-> $propiedad;
@@ -100,7 +102,7 @@ $alumno1->notaProyecto= 7;
 $alumno1->imprimir();
 
 $alumno2 = new Alumno();
-$alumno2->setNombre= "Belen";
+$alumno2->setNombre("Belen");
 $alumno2->edad= 30;
 $alumno2->notaPortfolio=8;
 $alumno2->notaPhp=9;

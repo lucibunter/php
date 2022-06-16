@@ -92,8 +92,8 @@ class Carrito{
         }
 
         $total = $ivaTotal + $subtotal - $this->cliente->descuento;
-        echo "<tr><th> Subtotal sin IVA: </th><td>$" . $subtotal . "</td></tr>"; 
-        echo "<tr><th> Total: </th><td>$" . $total . "</td></tr>"; 
+        echo "<tr><th> Subtotal sin IVA: </th><td>$" . number_format($subtotal, 2) . "</td></tr>"; 
+        echo "<tr><th> Total: </th><td>$" . number_format($total, 2) . "</td></tr>"; 
         echo "</tbody></table>";
         }
 
