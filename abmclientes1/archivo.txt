@@ -1,1 +1,1 @@
-[{"dni":"42849984","nombre":"Luciana Ivana","telefono":"2216550248","email":"luulibunter@gmail.com","imagen":"2022061604060119.png"},{"dni":"25679442","nombre":"Emanuel Carraso","telefono":"22163574","email":"ema@gmail.com","imagen":"2022061604062419.png"},{"dni":"45637283","nombre":"Veronica Viviana","telefono":"22163574","email":"vero@gmail.com","imagen":"2022061604065319.jpg"}]
+[]
