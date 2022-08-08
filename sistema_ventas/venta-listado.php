@@ -1,10 +1,10 @@
 <?php
 include_once "config.php";
-include_once "entidades/tipoproducto.php";
-$pg = "Listado de tipos de productos";
+include_once "entidades/venta.php";
+$pg = "Listado de Ventas";
 
-$tipoproducto = new TipoProducto();
-$aTipoProducto = $tipoproducto->obtenerTodos();
+$venta = new Venta();
+$aVentas= $venta->cargarGrilla();
 
 include_once("header.php"); 
 ?>
@@ -12,21 +12,31 @@ include_once("header.php");
         <!-- Begin Page Content -->
         <div class="container-fluid">
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Listado de tipos de Productos</h1>
+          <h1 class="h3 mb-4 text-gray-800">Listado de Ventas</h1>
           <div class="row">
                 <div class="col-12 mb-3">
-                    <a href="tipoproducto-formulario.php" class="btn btn-primary mr-2">Nuevo</a>
+                    <a href="venta-formulario.php" class="btn btn-primary mr-2">Nuevo</a>
                 </div>
             </div>
           <table class="table table-hover border">
             <tr>
-                <th>Nombre</th>
+                <th>Fecha</th>
+                <th>Cantidad</th>
+                <th>Producto</th>
+                <th>Cliente</th>
+                <th>Total</th>
+                <th>Acciones</th>
             </tr>
-            <?php foreach ($aTipoProducto as $tipoproducto): ?>
+            <?php foreach ($aVentas as $venta): ?>
               <tr>
-                  <td><?php echo $tipoproducto->nombre; ?></td>
+                  <td><?php echo $venta->fecha; ?></td>
+                  <td><?php echo $venta->cantidad; ?></td>
+                  <td><a href="producto-formulario.php?id=<?php echo $venta->fk_idproducto ?>" ><?php echo $venta->nombre_producto; ?></td>
+                  <td><a href="cliente-formulario.php?id=<?php echo $venta->fk_idcliente ?>" ><?php echo $venta->nombre_cliente; ?></td>
+                  <td><?php echo  number_format($venta->total, 2, ',', '.'); ?></td>
                   <td style="width: 110px;">
-                      <a href="tipoproducto-formulario.php?id=<?php echo $tipoproducto->idtipoproducto; ?>"><i class="fas fa-search"></i></a>   
+                      <a href="venta-formulario.php?id=<?php echo $venta->idventa; ?>"><i class="fas fa-search"></i></a>   
+                      
                   </td>
               </tr>
             <?php endforeach; ?>

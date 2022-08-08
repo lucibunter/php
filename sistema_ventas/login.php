@@ -3,15 +3,24 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-session_start(); 
+
+
+include_once "config.php";
+include_once "entidades/usuario.php";
 
 if($_POST){
   $usuario = trim($_REQUEST["txtUsuario"]);
   $clave = trim($_REQUEST["txtClave"]);
- //Si el usuario es admin y la clave es admin123
-  if($usuario == "admin" && $clave == "admin123"){
+ 
+  //ingresamos a la BBDD para checkear si existe el usuario ingresado. 
+  //| a traves dede instanciar la clase usuario
+  $entidadUsuario= new Usuario();
+  $entidadUsuario->obtenerPorUsuario($usuario);
+
+  //si el nombre de usuario de la entidad es diferente de vacio y la clave es iguak a la q esta encriptada:
+  if($entidadUsuario->usuario != "" && password_verify($clave, $entidadUsuario->clave)){
     //Crear una variable de session con tu nombre
-    $_SESSION["nombre"] = "Luciana";
+    $_SESSION["nombre"] = $entidadUsuario->nombre;
     //Redireccionar a index.php
     header("Location: index.php");
   }else{

@@ -29,10 +29,10 @@ include_once("header.php");
             </tr>
             <?php foreach ($aProductos as $producto): ?>
               <tr>
-                  <td><?php echo $producto->imagen; ?></td>
+                  <td><img src="img/<?php echo $producto->imagen; ?>" alt="" class="img-thumbnail"></td>
                   <td><?php echo $producto->nombre; ?></td>
                   <td><?php echo $producto->cantidad; ?></td>
-                  <td><?php echo $producto->precio; ?></td>
+                  <td><?php echo number_format($producto->precio, 2, ',', '.'); ?></td>
                   <td style="width: 110px;">
                       <a href="producto-formulario.php?id=<?php echo $producto->idproducto; ?>"><i class="fas fa-search"></i></a>   
                   </td>
